@@ -1,0 +1,147 @@
+*{
+    font-size: 100%;
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+body {
+    background-color: #efefef;
+    padding: 0;
+    margin: 0;
+    --sidebarwidth: 400px;
+    
+
+}
+small{
+    font-size:.7em;
+}
+body,
+input,
+button{
+    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+}
+#app {
+    display: grid;
+    grid-template-columns: var(--sidebarwidth) 1fr;
+}
+aside {
+    width: var(--sidebarwidth);
+    display: flex-column;
+    max-height: 100vh;
+    height: 100vh;
+    background: #ddd;
+    position: sticky;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    padding:4px;
+    overflow-y: auto;
+}
+main {
+    /* width: 100%; */
+    /* height: 100vh; */
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+
+    /* display: flex; */
+    align-items: center;
+    justify-items: center;
+    /* border: 5px solid pink; */
+}
+#dropzone {
+    background: #ccc;
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+}
+
+fieldset {
+    width: 100%;
+    border:0;
+    margin-top: 4px;
+    padding: 4px;
+    border-top:1px solid black;
+}
+/* fieldset input[type=text], */
+fieldset button{
+    width: 200px;
+    line-height:20px;
+    margin-top: 4px;
+    font-size:18px;
+    border:0;
+   
+}
+fieldset input[type=checkbox]{
+    margin-right:0.5em;
+}
+fieldset input[type=checkbox]+label{
+    vertical-align: top;
+}
+fieldset button,
+fieldset label{
+    font-size:.8em;
+    text-transform: uppercase;
+}
+fieldset button:hover{
+    color: white;
+    background-color: black;
+    cursor:pointer;
+}
+#dropzone input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 400px;
+    /* position: relative; */
+    z-index: 100;
+    /* border: 3px solid yellow; */
+    opacity: 0;
+}
+#dropzone-cta{
+    position:absolute;
+    display: flex;
+    width:100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding:4em;
+    text-align: center;
+}
+#dropzone img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+#editor {
+    /* border: 1px solid yellow; */
+    max-width: 100%;
+    max-height: 90vh;
+    grid-column: 1/1;
+    grid-row: 1/1;
+}
+#output {
+    /* border: 1px solid red; */
+    max-width: 100%;
+    max-height: 90vh;
+    grid-column: 1/1;
+    grid-row: 1/1;
+}
+#scale {
+    /* border: 1px solid yellow; */
+    max-width: 320px;
+    grid-column: 1/1;
+    grid-row: 1/1;
+    justify-self: end;
+    align-self: start;
+    margin:2em;
+    position: fixed;
+    z-index:200;
+}
