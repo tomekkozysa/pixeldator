@@ -1,4 +1,3 @@
-console.log("editor");
 class Pixeldator {
   constructor(source, canvas, onUpdate) {
     this.source = source;
@@ -15,7 +14,7 @@ class Pixeldator {
     this.mapsize = 8;
     this.reducex = 30;
     this.reducey = 40;
-    this.init();
+    // this.init();
   }
   exportPixelData() {
     let clipboard = document.querySelector("#clipboardInput");
@@ -36,9 +35,11 @@ class Pixeldator {
     const json = {
       width: this.reducex,
       height: this.reducey,
+      cellwidth: this.cellWidth,
+      cellheight: this.cellHeight,
       mapsize: this.mapsize,
       timestamp: Date.now(),
-      colours: this.pixelData,
+      data: this.pixelData,
     };
     return JSON.stringify(json);
   }
@@ -51,6 +52,7 @@ class Pixeldator {
   range(inmin, inmax, outmin, outmax, value) {
     return ((value - inmin) * (outmax - outmin)) / (inmax - inmin) + outmin;
   }
+
   reduce(reducex, reducey, mapsize) {
     this.mapsize = mapsize;
     this.reducex = reducex;
@@ -91,10 +93,10 @@ class Pixeldator {
           sq_avg += avg;
           sq_avg_count++;
         }
-        let mappedValue = Math.floor(
+        let mappedValue = Math.round(
           this.range(0, 255, 0, mapsize, sq_avg / sq_avg_count)
         );
-        let reduced_avg = Math.floor((256 / mapsize) * mappedValue);
+        let reduced_avg = Math.round((256 / mapsize) * mappedValue);
 
         this.pixelData.push(mappedValue);
         this.ctx.fillStyle = `rgb(${reduced_avg}, ${reduced_avg}, ${reduced_avg})`;
@@ -130,18 +132,18 @@ class Pixeldator {
           sq_avg += avg;
           sq_avg_count++;
         }
-        let mappedValue = Math.floor(
+        let mappedValue = Math.round(
           this.range(0, 255, 0, mapsize, sq_avg / sq_avg_count)
         );
-        let reduced_avg = Math.floor((256 / mapsize) * mappedValue);
+        let reduced_avg = Math.round((255 / (mapsize - 1)) * mappedValue);
 
         this.pixelData.push(mappedValue);
+
         this.ctx.fillStyle = `rgb(${reduced_avg}, ${reduced_avg}, ${reduced_avg})`;
+
         this.ctx.fillRect(startx, starty, this.cellWidth, this.cellHeight);
       }
     }
     this.onUpdate();
   }
-
-  init() {}
 }
