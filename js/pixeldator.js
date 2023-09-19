@@ -16,6 +16,28 @@ class Pixeldator {
     this.reducey = 40;
     // this.init();
   }
+  log() {
+    console.log(
+      "\ncellWidth",
+      this.cellWidth,
+      "\ncellHeight",
+      this.cellHeight,
+      "\nvertical",
+      this.vertical,
+      "\nmapsize",
+      this.mapsize,
+      "\nreducex",
+      this.reducex,
+      "\nreducey",
+      this.reducey,
+      "\nwidth",
+      this.width,
+      "\nheight",
+      this.height,
+      "\ncolours",
+      this.mapsize
+    );
+  }
   exportPixelData() {
     let clipboard = document.querySelector("#clipboardInput");
     if (!clipboard) {
@@ -144,6 +166,7 @@ class Pixeldator {
         this.ctx.fillRect(startx, starty, this.cellWidth, this.cellHeight);
       }
     }
+
     this.onUpdate();
   }
 }

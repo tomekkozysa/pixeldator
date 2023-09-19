@@ -19,6 +19,12 @@ class ImageDrop {
         // handle message
       }
     });
+    this.input.addEventListener("input", (e) => {
+      e.preventDefault();
+      this.file = e.target.files[0];
+      this.onImage();
+      console.log(e, e.target.files);
+    });
   }
 
   onImage() {
