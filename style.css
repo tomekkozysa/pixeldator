@@ -167,7 +167,7 @@ fieldset input[type="checkbox"] + label {
 	vertical-align: top;
 }
 
-@media (width < 64rem) {
+@media (max-width: 64rem) {
 	#app {
 		grid-template-columns: 1fr;
 		/* grid-template-rows: 1fr fit-content fit-content; */
@@ -183,12 +183,15 @@ fieldset input[type="checkbox"] + label {
 		display: block;
 	}
 	main {
+		position: fixed;
 		grid-row: 1 / 1;
 	}
 	#sidebar {
 		grid-row: 2 / 2;
 	}
 	aside {
+		margin-top: 80vh;
+		padding-bottom: 20vh;
 		height: fit-content;
 	}
 
@@ -197,5 +200,21 @@ fieldset input[type="checkbox"] + label {
 	}
 	#dropzone-cta .desktop {
 		display: none;
+	}
+	form {
+	}
+	fieldset.buttons,
+	fieldset.number {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+	}
+	fieldset.number label {
+		flex-basis: 15%;
+	}
+
+	fieldset.number input,
+	fieldset.number label {
+		font-size: 1em;
 	}
 }
