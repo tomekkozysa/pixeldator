@@ -176,6 +176,9 @@ fieldset input[type="checkbox"] + label {
 		/* grid-row: 2 / 2; */
 		/* max-height: 120px; */
 	}
+	#app.js-not-ready #dropzone {
+		display: block;
+	}
 	main {
 		grid-row: 1 / 1;
 	}
