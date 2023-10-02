@@ -1,5 +1,5 @@
 <html lang="en">
-  <!--
+	<!--
 
 ██████╗ ██╗██╗  ██╗███████╗██╗     ██████╗  █████╗ ████████╗ ██████╗ ██████╗ 
 ██╔══██╗██║╚██╗██╔╝██╔════╝██║     ██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
@@ -10,237 +10,246 @@
 
 -->
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pixeldator v.0.0.2</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      .js-not-ready fieldset {
-        display: none;
-      }
-      .js-scale {
-      }
-    </style>
-  </head>
-  <body>
-    <section id="app" class="js-not-ready">
-      <aside>
-        <div>
-          <div id="dropzone">
-            <div id="dropzone-cta">
-              Drop your image here <br />or click to upload
-            </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>pixeldator v.0.0.2</title>
+		<link rel="stylesheet" href="style.css" />
+		<style>
+			.js-not-ready fieldset {
+				display: none;
+			}
+			.js-scale {
+			}
+		</style>
+	</head>
+	<body>
+		<section id="app" class="js-not-ready">
+			<aside>
+				<div>
+					<div id="dropzone">
+						<div id="dropzone-cta">
+							<span class="desktop">
+								Drop your image here <br />or click to add image
+								<small
+									>image will be processed in the browser and
+									won't be uploaded</small
+								>
+							</span>
+							<span class="mobile">
+								Tap to add an image
+								<small
+									>image will be processed in the browser and
+									won't be uploaded</small
+								>
+							</span>
+						</div>
 
-            <input
-              type="file"
-              class="file"
-              multiple="multiple"
-              accept="image/jpeg, image/png, image/jpg"
-            />
-          </div>
+						<input
+							type="file"
+							class="file"
+							multiple="multiple"
+							accept="image/jpeg, image/png, image/jpg"
+						/>
+					</div>
 
-          <fieldset>
-            <label>Colours</label><br />
-            <input
-              type="number"
-              id="colours"
-              min="1"
-              max="256"
-              step="1"
-              value="8"
-            />
-          </fieldset>
+					<fieldset>
+						<label>Colours</label><br />
+						<input
+							type="number"
+							id="colours"
+							min="1"
+							max="256"
+							step="1"
+							value="8"
+						/>
+					</fieldset>
 
-          <fieldset>
-            <label>Columns</label><br />
-            <input
-              type="number"
-              id="reducex"
-              min="1"
-              max="1200"
-              step="1"
-              value="40"
-            />
-            <button id="adjustcols">
-              Reset (<span id="colcount">0</span>)
-            </button>
-          </fieldset>
-          <fieldset>
-            <label>Rows</label><br />
-            <input
-              type="number"
-              id="reducey"
-              min="1"
-              max="1200"
-              step="1"
-              value="40"
-            />
-            <button id="adjustrows">
-              Reset (<span id="rowcount">0</span>)
-            </button>
-          </fieldset>
+					<fieldset>
+						<label>Columns</label><br />
+						<input
+							type="number"
+							id="reducex"
+							min="1"
+							max="1200"
+							step="1"
+							value="40"
+						/>
+						<button id="adjustcols">
+							Reset (<span id="colcount">0</span>)
+						</button>
+					</fieldset>
+					<fieldset>
+						<label>Rows</label><br />
+						<input
+							type="number"
+							id="reducey"
+							min="1"
+							max="1200"
+							step="1"
+							value="40"
+						/>
+						<button id="adjustrows">
+							Reset (<span id="rowcount">0</span>)
+						</button>
+					</fieldset>
 
-          <fieldset>
-            <label>
-              <input type="checkbox" id="keepratio" />
-              1:1 pixel ratio
-            </label>
+					<fieldset>
+						<label>
+							<input type="checkbox" id="keepratio" />
+							1:1 pixel ratio
+						</label>
+					</fieldset>
 
-            <input type="button" id="gsize" value="0/0" disabled /><br />
-          </fieldset>
+					<fieldset>
+						<label>
+							<input type="checkbox" id="vertical" />
+							Get data as columns
+						</label>
+						<br />
+						<button id="exportPD">Copy to Clipboard</button><br />
+						<button id="exportPDjson">Download</button>
+					</fieldset>
+				</div>
+			</aside>
+			<main>
+				<canvas id="output" willReadFrequently="true"></canvas>
+				<canvas id="editor" willReadFrequently="true"></canvas>
 
-          <fieldset>
-            <label>
-              <input type="checkbox" id="vertical" />
-              Get data as columns
-            </label>
-            <br />
-            <button id="exportPD">Copy to Clipboard</button><br />
-            <button id="exportPDjson">Download</button>
-          </fieldset>
-        </div>
-      </aside>
-      <main>
-        <canvas id="output"></canvas>
-        <canvas id="editor"></canvas>
+				<!-- <input type="range" id="scale" min="20" max="100" step="1" value="100" /> -->
+			</main>
+		</section>
 
-        <!-- <input type="range" id="scale" min="20" max="100" step="1" value="100" /> -->
-      </main>
-    </section>
+		<script src="js/imageToCanvas.js" type="text/javascript"></script>
+		<script src="js/imagedrop.js" type="text/javascript"></script>
+		<script src="js/pixeldator.js" type="text/javascript"></script>
 
-    <script src="js/imageToCanvas.js" type="text/javascript"></script>
-    <script src="js/imagedrop.js" type="text/javascript"></script>
-    <script src="js/pixeldator.js" type="text/javascript"></script>
+		<script>
+			const dropzone = document.querySelector("#dropzone");
+			const reducex = document.querySelector("#reducex");
+			const reducey = document.querySelector("#reducey");
+			const colours = document.querySelector("#colours");
+			const exportPD = document.querySelector("#exportPD");
+			const exportPDjson = document.querySelector("#exportPDjson");
+			const rowcount = document.querySelector("#rowcount");
+			const colcount = document.querySelector("#colcount");
+			const adjustrows = document.querySelector("#adjustrows");
+			const adjustcols = document.querySelector("#adjustcols");
+			const vertical = document.querySelector("#vertical");
+			const keepratio = document.querySelector("#keepratio");
 
-    <script>
-      const dropzone = document.querySelector("#dropzone");
-      const reducex = document.querySelector("#reducex");
-      const reducey = document.querySelector("#reducey");
-      const colours = document.querySelector("#colours");
-      const exportPD = document.querySelector("#exportPD");
-      const exportPDjson = document.querySelector("#exportPDjson");
-      // const gsize = document.querySelector("#gsize");
-      const rowcount = document.querySelector("#rowcount");
-      const colcount = document.querySelector("#colcount");
-      const adjustrows = document.querySelector("#adjustrows");
-      const adjustcols = document.querySelector("#adjustcols");
-      const vertical = document.querySelector("#vertical");
-      const keepratio = document.querySelector("#keepratio");
+			const editor = new Pixeldator(
+				document.querySelector("#output"),
+				document.querySelector("#editor"),
+				() => {
+					rowcount.innerText = editor.vertical
+						? Math.round(editor.width / editor.cellHeight)
+						: Math.round(editor.height / editor.cellWidth);
 
-      const editor = new Pixeldator(
-        document.querySelector("#output"),
-        document.querySelector("#editor"),
-        () => {
-          // gsize.value = `${editor.cellWidth}/${editor.cellHeight}`;
+					colcount.innerText = editor.vertical
+						? Math.round(editor.height / editor.cellWidth)
+						: Math.round(editor.width / editor.cellHeight);
+				}
+			);
 
-          rowcount.innerText = editor.vertical
-            ? Math.round(editor.width / editor.cellHeight)
-            : Math.round(editor.height / editor.cellWidth);
+			const isReady = () => {
+				const el = document.getElementById("app");
+				el.classList.remove("js-not-ready");
+				// uncomment for fun:
+				// setInterval(() => {
+				//   colours.value = 1 + Math.round(Math.random() * 24);
+				//   reducex.value = 2 + Math.round(Math.random() * 240);
+				//   reducey.value = 2 + Math.round(Math.random() * 240);
+				//   editor.reduce(reducex.value, reducey.value, colours.value);
+				// }, 30);
+			};
 
-          colcount.innerText = editor.vertical
-            ? Math.round(editor.height / editor.cellWidth)
-            : Math.round(editor.width / editor.cellHeight);
-        }
-      );
+			const sourceCanvas = new ImageToCanvas(
+				document.querySelector("#output"),
+				(output) => {
+					console.log(output);
+					editor.setSize(output.width, output.height);
+					editor.reduce(reducex.value, reducey.value, colours.value);
+					isReady();
+				}
+			);
 
-      const isReady = () => {
-        const el = document.getElementById("app");
-        el.classList.remove("js-not-ready");
-        // uncomment for fun:
-        // setInterval(() => {
-        //   colours.value = 1 + Math.round(Math.random() * 24);
-        //   reducex.value = 2 + Math.round(Math.random() * 240);
-        //   reducey.value = 2 + Math.round(Math.random() * 240);
-        //   editor.reduce(reducex.value, reducey.value, colours.value);
-        // }, 30);
-      };
+			const drop = new ImageDrop(dropzone, (file, size) => {
+				dropzone.classList.add("loaded");
+				sourceCanvas.source = file;
+				// sourceCanvas.drawImage();
+			});
 
-      const sourceCanvas = new ImageToCanvas(
-        document.querySelector("#output"),
-        (output) => {
-          editor.setSize(output.width, output.height);
-          editor.reduce(reducex.value, reducey.value, colours.value);
-          isReady();
-        }
-      );
+			const onReduceXChange = (e) => {
+				let val = e.target.value;
+				if (keepratio.checked) {
+					reducey.value = Math.round(
+						editor.height / (editor.width / val)
+					);
+					editor.reduce(reducex.value, reducey.value, colours.value);
+				} else {
+					editor.reduce(val, reducey.value, colours.value);
+				}
+			};
 
-      const drop = new ImageDrop(dropzone, (file, size) => {
-        dropzone.classList.add("loaded");
-        sourceCanvas.source = file;
-        sourceCanvas.drawImage();
-      });
+			const onReduceYChange = (e) => {
+				let val = e.target.value;
+				if (keepratio.checked) {
+					reducex.value = Math.round(
+						editor.width / (editor.height / val)
+					);
+					editor.reduce(reducex.value, reducey.value, colours.value);
+				} else {
+					editor.reduce(reducex.value, val, colours.value);
+				}
+			};
 
-      // const onScaleChange = (e) => {
-      //   let val = e.target.value / 100;
-      //   sourceCanvas.setScale(val);
-      // };
-      const onReduceXChange = (e) => {
-        let val = e.target.value;
-        if (keepratio.checked) {
-          reducey.value = Math.round(editor.height / (editor.width / val));
-          editor.reduce(reducex.value, reducey.value, colours.value);
-        } else {
-          editor.reduce(val, reducey.value, colours.value);
-        }
-      };
+			const onAdjustColumns = (e) => {
+				reducex.value = Math.round(editor.width / editor.cellHeight);
+				editor.reduce(reducex.value, reducey.value, colours.value);
+			};
+			const onAdjustRows = (e) => {
+				reducey.value = Math.round(editor.height / editor.cellWidth);
+				editor.reduce(reducex.value, reducey.value, colours.value);
+			};
 
-      const onReduceYChange = (e) => {
-        let val = e.target.value;
-        if (keepratio.checked) {
-          reducex.value = Math.round(editor.width / (editor.height / val));
-          editor.reduce(reducex.value, reducey.value, colours.value);
-        } else {
-          editor.reduce(reducex.value, val, colours.value);
-        }
-      };
+			const onColoursChange = (e) => {
+				let val = e.target.value;
+				editor.reduce(reducex.value, reducey.value, val);
+			};
+			const exportPixelData = (e) => {
+				editor.exportPixelData();
+			};
+			const downloadPixelData = (e) => {
+				let data = editor.getAsJSON();
+				let element = document.createElement("a");
+				element.setAttribute(
+					"href",
+					"data:text/plain;charset=utf-8," + encodeURIComponent(data)
+				);
+				element.setAttribute(
+					"download",
+					`pixeldator-${Date.now()}.json`
+				);
+				element.style.display = "none";
+				document.body.appendChild(element);
+				element.click();
+				document.body.removeChild(element);
+			};
+			const changeScanOrder = (e) => {
+				editor.vertical = vertical.checked;
+				editor.reduce(reducex.value, reducey.value, colours.value);
+			};
 
-      const onAdjustColumns = (e) => {
-        reducex.value = Math.round(editor.width / editor.cellHeight);
-        editor.reduce(reducex.value, reducey.value, colours.value);
-      };
-      const onAdjustRows = (e) => {
-        reducey.value = Math.round(editor.height / editor.cellWidth);
-        editor.reduce(reducex.value, reducey.value, colours.value);
-      };
-
-      const onColoursChange = (e) => {
-        let val = e.target.value;
-        editor.reduce(reducex.value, reducey.value, val);
-      };
-      const exportPixelData = (e) => {
-        editor.exportPixelData();
-      };
-      const downloadPixelData = (e) => {
-        let data = editor.getAsJSON();
-        let element = document.createElement("a");
-        element.setAttribute(
-          "href",
-          "data:text/plain;charset=utf-8," + encodeURIComponent(data)
-        );
-        element.setAttribute("download", `pixeldator-${Date.now()}.json`);
-        element.style.display = "none";
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
-      };
-      const changeScanOrder = (e) => {
-        editor.vertical = vertical.checked;
-        editor.reduce(reducex.value, reducey.value, colours.value);
-      };
-
-      adjustcols.addEventListener("click", onAdjustColumns);
-      adjustrows.addEventListener("click", onAdjustRows);
-      reducex.addEventListener("input", onReduceXChange);
-      reducey.addEventListener("input", onReduceYChange);
-      colours.addEventListener("input", onColoursChange);
-      exportPD.addEventListener("click", exportPixelData);
-      exportPDjson.addEventListener("click", downloadPixelData);
-      vertical.addEventListener("click", changeScanOrder);
-
-      // scale.addEventListener("input", onScaleChange);
-      // sourceCanvas.setScale(scale.value / 100);
-    </script>
-  </body>
+			adjustcols.addEventListener("click", onAdjustColumns);
+			adjustrows.addEventListener("click", onAdjustRows);
+			reducex.addEventListener("input", onReduceXChange);
+			reducey.addEventListener("input", onReduceYChange);
+			colours.addEventListener("input", onColoursChange);
+			exportPD.addEventListener("click", exportPixelData);
+			exportPDjson.addEventListener("click", downloadPixelData);
+			vertical.addEventListener("click", changeScanOrder);
+		</script>
+	</body>
 </html>

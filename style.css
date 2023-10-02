@@ -1,156 +1,195 @@
 * {
-  font-size: 100%;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+	font-size: 100%;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 body {
-  background-color: #efefef;
-  padding: 0;
-  margin: 0;
-  --sidebarwidth: 400px;
+	background-color: #efefef;
+	padding: 0;
+	margin: 0;
+	--sidebarwidth: 400px;
 }
 small {
-  font-size: 0.7em;
+	font-size: 0.7em;
 }
 body,
 input,
 button {
-  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
-    "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
-    "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier,
-    monospace;
+	font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
+		"Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+		"Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier,
+		monospace;
 }
 #app {
-  display: grid;
-  grid-template-columns: var(--sidebarwidth) 1fr;
+	display: grid;
+	grid-template-columns: var(--sidebarwidth) 1fr;
 }
+
 #app.js-not-ready {
-  grid-template-columns: 1fr;
+	grid-template-columns: 1fr;
 }
 #app.js-not-ready main {
-  display: none;
+	display: none;
 }
 #app.js-not-ready {
-  --sidebarwidth: 100%;
+	--sidebarwidth: 100%;
 }
 aside {
-  width: var(--sidebarwidth);
-  display: flex-column;
-  max-height: 100vh;
-  height: 100vh;
-  background: #ddd;
-  position: sticky;
-  z-index: 20;
-  left: 0;
-  top: 0;
-  padding: 0 4px;
-  overflow-y: auto;
-  overflow-x: hidden;
+	width: var(--sidebarwidth);
+	display: flex-column;
+	max-height: 100vh;
+	height: 100vh;
+	background: #ddd;
+	position: sticky;
+	z-index: 20;
+	left: 0;
+	top: 0;
+	padding: 0 4px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 main {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 100%;
 
-  align-items: center;
-  justify-items: center;
+	align-items: center;
+	justify-items: center;
 }
 #dropzone {
-  background: #ccc;
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  min-width: 100vw;
-  grid-column: 1 / 2;
+	background: #ccc;
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	min-width: 100vw;
+	grid-column: 1 / 2;
 }
+
 #dropzone.loaded {
-  min-width: 100%;
-  min-height: 400px;
+	min-width: 100%;
+	min-height: 200px;
 }
 
 #dropzone input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 100;
-  opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 100;
+	opacity: 0;
 }
 #dropzone-cta {
-  position: absolute;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  padding: 4em;
-  text-align: center;
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	padding: 4em;
+	text-align: center;
+}
+#dropzone-cta .mobile {
+	display: none;
+}
+#dropzone-cta small {
+	display: block;
 }
 #dropzone img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  display: block;
-  position: relative;
-  z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	display: block;
+	position: relative;
+	z-index: 1;
+	display: none;
 }
 #editor {
-  max-width: 100%;
-  max-height: 90vh;
-  grid-column: 1/1;
-  grid-row: 1/1;
+	max-width: 100%;
+	max-height: 90vh;
+	grid-column: 1/1;
+	grid-row: 1/1;
 }
 #output {
-  max-width: 100%;
-  max-height: 90vh;
-  grid-column: 1/1;
-  grid-row: 1/1;
+	max-width: 100%;
+	max-height: 90vh;
+	grid-column: 1/1;
+	grid-row: 1/1;
 }
 #scale {
-  max-width: 320px;
-  grid-column: 1/1;
-  grid-row: 1/1;
-  justify-self: end;
-  align-self: start;
-  margin: 2em;
-  position: fixed;
-  z-index: 200;
+	max-width: 320px;
+	grid-column: 1/1;
+	grid-row: 1/1;
+	justify-self: end;
+	align-self: start;
+	margin: 2em;
+	position: fixed;
+	z-index: 200;
 }
 
 fieldset {
-  width: 100%;
-  border: 0;
-  margin-top: 4px;
-  padding: 4px;
-  border-top: 1px solid black;
+	width: 100%;
+	border: 0;
+	margin-top: 4px;
+	padding: 4px;
+	border-top: 1px solid black;
 }
 fieldset button,
 fieldset label {
-  font-size: 0.8em;
-  text-transform: uppercase;
+	font-size: 0.8em;
+	text-transform: uppercase;
 }
 
 fieldset button {
-  padding: 0 0.2rem;
-  line-height: 20px;
-  margin-top: 4px;
-  border: 0;
+	padding: 0 0.2rem;
+	line-height: 20px;
+	margin-top: 4px;
+	border: 0;
 }
 
 fieldset button:hover {
-  color: white;
-  background-color: black;
-  cursor: pointer;
+	color: white;
+	background-color: black;
+	cursor: pointer;
 }
 
 fieldset input[type="checkbox"] {
-  margin-right: 0.5em;
+	margin-right: 0.5em;
 }
 fieldset input[type="checkbox"] + label {
-  vertical-align: top;
+	vertical-align: top;
+}
+
+@media (width < 64rem) {
+	#app {
+		grid-template-columns: 1fr;
+		/* grid-template-rows: 1fr fit-content fit-content; */
+		grid-template-rows: 1fr fit-content;
+		--sidebarwidth: 100%;
+	}
+	#dropzone {
+		display: none;
+		/* grid-row: 2 / 2; */
+		/* max-height: 120px; */
+	}
+	main {
+		grid-row: 1 / 1;
+	}
+	#sidebar {
+		grid-row: 2 / 2;
+	}
+	aside {
+		height: fit-content;
+	}
+
+	#dropzone-cta .mobile {
+		display: block;
+	}
+	#dropzone-cta .desktop {
+		display: none;
+	}
 }

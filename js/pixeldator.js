@@ -4,8 +4,6 @@ class Pixeldator {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
     this.sourcectx = this.source.getContext("2d");
-    // this.ctx.willReadFrequently = true;
-    // this.sourcectx.willReadFrequently = true;
     this.cellWidth;
     this.cellHeight;
     this.pixelData = [];
@@ -14,7 +12,6 @@ class Pixeldator {
     this.mapsize = 8;
     this.reducex = 30;
     this.reducey = 40;
-    // this.init();
   }
   log() {
     console.log(
@@ -51,7 +48,6 @@ class Pixeldator {
     console.log(clipboard.value);
     clipboard.select();
     navigator.clipboard.writeText(clipboard.value);
-    // return this.pixelData;
   }
   getAsJSON() {
     const json = {
@@ -88,6 +84,7 @@ class Pixeldator {
   }
 
   vertical_reduce(reducex, reducey, mapsize) {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.pixelData = [];
     this.cellWidth = this.canvas.width / reducex;
     this.cellHeight = this.canvas.height / reducey;
@@ -129,10 +126,11 @@ class Pixeldator {
   }
 
   horizontal_reduce(reducex, reducey, mapsize) {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
     this.pixelData = [];
     this.cellWidth = this.canvas.width / reducex;
     this.cellHeight = this.canvas.height / reducey;
-
     for (let r = 0; r < reducey; r++) {
       for (let c = 0; c < reducex; c++) {
         let startx = c * this.cellWidth;

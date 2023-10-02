@@ -13,21 +13,17 @@ class ImageToCanvas {
   }
   setScale(val) {
     this.scale = val;
-    this.drawImage();
   }
 
   set source(src) {
-    // this.img = src;
-
     this.img = document.createElement("img");
     this.img.setAttribute("src", URL.createObjectURL(src));
 
     this.img.onload = () => {
       this.width = this.img.naturalWidth;
       this.height = this.img.naturalHeight;
-      console.log("i2c dimensions?", this.width, this.height);
+      console.log("image loaded", this.width, this.height);
       this.display();
-      //   img.remove();
     };
   }
 
@@ -37,7 +33,7 @@ class ImageToCanvas {
   }
 
   display() {
-    console.log(this.img);
+    console.log("display", this.img);
 
     this.ctx.clearRect(0, 0, this.output.width, this.output.height);
     this.outputWidth = this.scale * Math.round(this.width);
